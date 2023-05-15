@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/nextjs'
+import { MessageDomain } from '../src/domain/message_domain'
 
 export const config = {
   runtime: 'edge',
@@ -7,6 +8,6 @@ export const config = {
 
 const app = new Hono().basePath('/api')
 
-app.get('/', (c) => c.json({ message: 'Hello ytnobody-hono-vercel' }))
+app.get('/', (c) => c.json({ message: MessageDomain.getMessage() }))
 
 export default handle(app)
